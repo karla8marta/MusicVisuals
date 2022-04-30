@@ -5,7 +5,6 @@ import java.util.*;
 
 public class Menu extends Visual {
 
-    int width = 800;
     // array to store song names
     String[] display_names = { "Homies In Paris", "Hero Planet", "Masquerade" };
     // array to store file names
@@ -14,10 +13,13 @@ public class Menu extends Visual {
     int song_index = 0;
     // array to store number of playes
     String[] players = { "1 player", "2 players" };
+    int width = 800;
     int middleW = width / 2;
     int border = 120;
     int gap = 50;
     int arrowH = 30;
+    float lerpedAverage = 0;
+    Lines lines;
 
     public void settings() {
 
@@ -32,6 +34,7 @@ public class Menu extends Visual {
         startMinim();
         loadAudio(songs[song_index]);
         play_music();
+        lines = new Lines(this);
 
     }
 
@@ -75,14 +78,6 @@ public class Menu extends Visual {
 
     }
 
-    /*
-     * public void keyPressed() {
-     * if (key == ' ') {
-     * 
-     * }
-     * }
-     */
-
     // draw arrows
     void drawArrow(int x, int y, int size, float angle) {
 
@@ -112,12 +107,12 @@ public class Menu extends Visual {
         text(display_names[song_index], middleW, border * 2 + gap);
         // display number of player here
         text(players[0], middleW, border * 3 + gap);
+
     }
 
     public void draw() {
 
         background(0);
-
         calculateAverageAmplitude();
         calculateFrequencyBands();
         drawMainScreen();
@@ -128,6 +123,7 @@ public class Menu extends Visual {
         drawArrow(border * 2 + gap - 8, border * 2 + gap - 8, arrowH, 179);
         drawArrow(middleW + border, border * 3 + gap - 8, arrowH, 0);
         drawArrow(border * 2 + gap - 8, border * 3 + gap - 8, arrowH, 179);
+        lines.draw_lines();
 
     }
 }
