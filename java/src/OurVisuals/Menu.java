@@ -7,9 +7,9 @@ public class Menu extends Visual {
 
     int width = 800;
     // array to store song names
-    String[] display_names = { "Homies In Paris", "Hero Planet" };
+    String[] display_names = { "Homies In Paris", "Hero Planet", "Masquerade" };
     // array to store file names
-    String[] songs = { "HomiesInParis2.mp3", "heroplanet.mp3" };
+    String[] songs = { "HomiesInParis2.mp3", "heroplanet.mp3", "Masquerade.mp3" };
     // index of the song selected
     int song_index = 0;
     // array to store number of playes
