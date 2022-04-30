@@ -124,10 +124,10 @@ public class Menu extends Visual {
         // change text colour with amplitude
         stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
         // change this after
-        drawArrow(middleW + border, border * 2 + gap - 8, 30, 0);
-        drawArrow(border * 2 + gap - 8, border * 2 + gap - 8, 30, 179);
-        drawArrow(middleW + border, border * 3 + gap - 8, 30, 0);
-        drawArrow(border * 2 + gap - 8, border * 3 + gap - 8, 30, 179);
+        drawArrow(middleW + border, border * 2 + gap - 8, arrowH, 0);
+        drawArrow(border * 2 + gap - 8, border * 2 + gap - 8, arrowH, 179);
+        drawArrow(middleW + border, border * 3 + gap - 8, arrowH, 0);
+        drawArrow(border * 2 + gap - 8, border * 3 + gap - 8, arrowH, 179);
 
     }
 }
