@@ -2,7 +2,7 @@
 
 Name: josh is dumb <3
 
-Student Number: 
+Student Number: Do u want my phone number instead?
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
