@@ -1,6 +1,6 @@
 # Music Visualiser Project
 
-Name:
+Name: josh is dumb <3
 
 Student Number: 
 
