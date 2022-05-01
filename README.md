@@ -6,11 +6,11 @@ Student Number: Do u want my phone number instead?
 Yes plz
 
 ## Instructions
-- Fork this repository and use it a starter project for your assignment
-- Create a new package named your student number and put all your code in this package.
-- You should start by creating a subclass of ie.tudublin.Visual
-- There is an example visualiser called MyVisual in the example package
-- Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
+Some top quality music
+https://www.youtube.com/watch?v=NVVNdEbdcFA
+https://www.youtube.com/watch?v=xdt1NDlLZw0&list=RDzIIlSYUvRnA&index=12
+https://www.youtube.com/watch?v=EPcLjgnGPDE&list=RDzIIlSYUvRnA&index=11
+
 
 # Description of the assignment
 
@@ -77,7 +77,7 @@ This is an image using an absolute URL:
 
 This is a youtube video:
 
-[![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
+https://www.youtube.com/watch?v=zIIlSYUvRnA&list=RDzIIlSYUvRnA&start_radio=1
 
 This is a table:
 
