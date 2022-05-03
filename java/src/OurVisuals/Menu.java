@@ -1,30 +1,42 @@
 package OurVisuals;
 
 import ie.tudublin.Visual;
-import java.util.*;
+import ddf.minim.*;
 
 public class Menu extends Visual {
 
     // array to store song names
     String[] display_names = { "Homies In Paris", "Hero Planet", "Masquerade" };
     // array to store file names
-    String[] songs = { "java/data/HomiesInParis2.mp3", "java/data/heroplanet.mp3", "java/data/Masquerade.mp3" };
-    // index of the song selected
-    int song_index = 0;
+    // WINDOWS
+    // String[] songs = { "HomiesInParis2.mp3", "heroplanet.mp3", "Masquerade.mp3"
+    // };
+    // MAC
+    String[] songs = { "java/data/HomiesInParis2.mp3",
+    // "java/data/heroplanet.mp3", "java/data/Masquerade.mp3" };
     // array to store number of playes
     String[] players = { "1 player", "2 players" };
-    int width = 800;
-    int middleW = width / 2;
+
+    Spiral spirals;
+    AudioPlayer ap;
+    AudioBuffer ab;
+    Minim minim;
+
+    Lines lines;
+    Robot robots;
+
     int border = 120;
     int gap = 50;
-    int arrowH = 30;
-    float lerpedAverage = 0;
-    Lines lines;
+    int gap2 = 30;
+    int middleW;
+    float[] lerpedBuffer;
+    // index of the song selected
+    int song_index = 0;
 
     public void settings() {
 
-        size(800, 800);
-        // fullScreen(P3D, SPAN);
+        size(1000, 1024);
+
     }
 
     public void setup() {
@@ -33,8 +45,15 @@ public class Menu extends Visual {
         setFrameSize(256);
         startMinim();
         loadAudio(songs[song_index]);
-        play_music();
+        minim = new Minim(this);
+        ap = getAudioPlayer();
+        ap.play();
+        ab = ap.mix;
         lines = new Lines(this);
+        robots = new Robot(this);
+        spirals = new Spiral(this);
+        lerpedBuffer = new float[width];
+        middleW = width / 2;
 
     }
 
@@ -42,15 +61,17 @@ public class Menu extends Visual {
 
         getAudioPlayer().close();
         loadAudio(songs[song_index]);
-        getAudioPlayer().cue(0);
-        getAudioPlayer().play();
+        ap = getAudioPlayer();
+        ap.play();
+        ab = ap.mix;
 
     }
 
     public void mousePressed() {
 
-        if (mouseX > middleW + border && mouseX < middleW + border + arrowH && mouseY > border * 2 + 35
-                && mouseY < border * 2 + 35 + arrowH / 2) {
+        // right arrow to change music
+        if (mouseX > middleW + border && mouseX < middleW + border + gap2 && mouseY > border * 2 + 35
+                && mouseY < border * 2 + 35 + gap2 / 2) {
 
             song_index += 1;
             println(song_index);
@@ -64,8 +85,9 @@ public class Menu extends Visual {
 
         }
 
-        if (mouseX > border * 2 + 10 && mouseX < border * 2 + 10 + arrowH && mouseY > border * 2 + arrowH
-                && mouseY < border * 2 + arrowH + arrowH / 2) {
+        // left arrow to change music
+        if (mouseX > border * 3 - 15 && mouseX < border * 3 - 10 + gap2 && mouseY > border * 2 + gap2
+                && mouseY < border * 2 + 20 + gap2 + gap2 / 2) {
 
             song_index -= 1;
             if (song_index < 0) {
@@ -75,6 +97,8 @@ public class Menu extends Visual {
             play_music();
 
         }
+
+        // User Presses Start
 
     }
 
@@ -101,8 +125,15 @@ public class Menu extends Visual {
         textSize(30);
         text("Choose Song", middleW, border * 2);
         text("Number of Players", middleW, border * 3);
+        fill(0);
+        rectMode(CENTER);
+        stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
+        rect(middleW - 2, border * 5 - 10, map(getSmoothedAmplitude(), 0, 1, 90, 150),
+                map(getSmoothedAmplitude(), 0, 1, 40, 80));
+        fill(255);
         text("Start", middleW, border * 5);
         textSize(25);
+        rectMode(CORNER);
         // display song name here
         text(display_names[song_index], middleW, border * 2 + gap);
         // display number of player here
@@ -119,11 +150,17 @@ public class Menu extends Visual {
         // change text colour with amplitude
         stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
         // change this after
-        drawArrow(middleW + border, border * 2 + gap - 8, arrowH, 0);
-        drawArrow(border * 2 + gap - 8, border * 2 + gap - 8, arrowH, 179);
-        drawArrow(middleW + border, border * 3 + gap - 8, arrowH, 0);
-        drawArrow(border * 2 + gap - 8, border * 3 + gap - 8, arrowH, 179);
+        drawArrow(middleW + border, border * 2 + gap - 8, gap2, 0);
+        drawArrow(border * 3 + 20, border * 2 + gap - 8, gap2, 179);
+        drawArrow(middleW + border, border * 3 + gap - 8, gap2, 0);
+        drawArrow(border * 3 + 20, border * 3 + gap - 8, gap2, 179);
         lines.draw_lines();
+        robots.render(100, middleW + border / 2);
+        robots.render(800, middleW + border / 2);
+        spirals.draw_spirals();
+
+        fill(255);
 
     }
+
 }

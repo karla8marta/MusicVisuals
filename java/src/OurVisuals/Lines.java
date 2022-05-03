@@ -13,7 +13,8 @@ public class Lines {
 
     public void draw_lines() {
         menu.pushMatrix();
-        menu.lerpedAverage = PApplet.lerp(lerpedAverage, menu.getAmplitude(), 0.1f);
+
+        lerpedAverage = PApplet.lerp(lerpedAverage, menu.getAmplitude(), 0.1f);
         float r = 1f;
         int shapes = 10;
         float size = 200;
@@ -21,12 +22,12 @@ public class Lines {
         menu.strokeWeight(2);
         for (int i = 0; i < 500; i++) {
             menu.stroke(PApplet.map(menu.getAmplitude(), 0, 1, 0, 255), 255, 255, 100);
-            float new_cal = i * (calculate + menu.lerpedAverage * 0.01f);
+            float new_cal = i * (calculate + lerpedAverage * 0.01f);
             float x = 50 + PApplet.sin(new_cal) * r;
             float y = 100 - PApplet.cos(new_cal) * r;
-            menu.line(0, size, x, y);
+            menu.line(0, menu.width / 5, x, y);
             size = y;
-            r += 0.5f + (menu.lerpedAverage * 0.01f);
+            r += 0.5f + (lerpedAverage * 0.01f);
         }
         menu.popMatrix();
     }
