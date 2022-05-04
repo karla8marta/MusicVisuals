@@ -46,7 +46,7 @@ public class Robot {
         menu.beginShape();
         menu.curveVertex(20, 75);
         menu.curveVertex(20, 75);
-        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, 0, 20), 105);
+        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, 0, 30), 105);
         menu.curveVertex(25, 130);
         menu.curveVertex(25, 130);
         menu.endShape();
@@ -54,7 +54,7 @@ public class Robot {
         menu.beginShape();
         menu.curveVertex(30, 75);
         menu.curveVertex(30, 75);
-        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, 10, 30), 105);
+        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, 10, 40), 105);
         menu.curveVertex(35, 130);
         menu.curveVertex(35, 130);
         menu.endShape();
@@ -62,7 +62,7 @@ public class Robot {
         menu.beginShape();
         menu.curveVertex(50, 75);
         menu.curveVertex(50, 75);
-        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, 40, 60), 105);
+        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, 40, 80), 105);
         menu.curveVertex(55, 130);
         menu.curveVertex(55, 130);
         menu.endShape();
@@ -70,7 +70,7 @@ public class Robot {
         menu.beginShape();
         menu.curveVertex(60, 75);
         menu.curveVertex(60, 75);
-        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, 50, 70), 105);
+        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, 50, 90), 105);
         menu.curveVertex(65, 130);
         menu.curveVertex(65, 130);
         menu.endShape();
@@ -109,7 +109,7 @@ public class Robot {
         menu.beginShape();
         menu.curveVertex(0, -25);
         menu.curveVertex(0, -25);
-        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, -10, -25), -35);
+        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, -10, -20), -35);
         menu.curveVertex(-23, -57);
         menu.curveVertex(-23, -57);
         menu.endShape();
@@ -117,7 +117,7 @@ public class Robot {
         menu.beginShape();
         menu.curveVertex(0, -15);
         menu.curveVertex(0, -15);
-        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, -10, -25), -25);
+        menu.curveVertex(PApplet.map(menu.getAmplitude(), 0, 1, -10, -20), -25);
         menu.curveVertex(-33, -57);
         menu.curveVertex(-33, -57);
         menu.endShape();

@@ -13,9 +13,9 @@ public class Menu extends Visual {
     // String[] songs = { "HomiesInParis2.mp3", "heroplanet.mp3", "Masquerade.mp3"
     // };
     // MAC
-    String[] songs = { "java/data/HomiesInParis2.mp3","java/data/heroplanet.mp3", "java/data/Masquerade.mp3"};
+    String[] songs = { "MusicVisuals/java/data/HomiesInParis2.mp3","MusicVisuals/java/data/heroplanet.mp3", "MusicVisuals/java/data/Masquerade.mp3"};
     // array to store number of playes
-    String[] players = { "1 player", "2 players" };
+    String[] players = { "OFF", "ON" };
 
     Spiral spirals;
     AudioPlayer ap;
@@ -33,9 +33,11 @@ public class Menu extends Visual {
     float[] lerpedBuffer;
     // index of the song selected
     int song_index = 0;
+    int player_index = 1;
 
     //click
     boolean clicked = false;
+    boolean played = true;
 
     //timer variables
     int last = 0;
@@ -67,11 +69,14 @@ public class Menu extends Visual {
 
     public void play_music() {
 
-        getAudioPlayer().close();
-        loadAudio(songs[song_index]);
-        ap = getAudioPlayer();
-        ap.play();
-        ab = ap.mix;
+        if (played == true)
+        {
+            getAudioPlayer().close();
+            loadAudio(songs[song_index]);
+            ap = getAudioPlayer();
+            ap.play();
+            ab = ap.mix;
+        }
 
     }
 
@@ -102,9 +107,60 @@ public class Menu extends Visual {
                 song_index = 2;
             }
 
+            
             play_music();
 
         }
+
+     
+        // right
+        if (mouseX > middleW + border && mouseX < middleW + border + gap2 && mouseY > border * 3 + 35
+        && mouseY < border * 3 + 35 + gap2 / 2) {
+
+            player_index += 1;
+           
+
+            if (player_index > players.length - 1) {
+                player_index = 0;
+            }
+
+            if (player_index == 1)
+            {
+                played = true;
+                play_music();
+            }
+
+            if (player_index == 0)
+            {
+                played = false;
+                getAudioPlayer().close();
+            }
+
+        }
+
+        // left
+          // left arrow to change music
+          if (mouseX > border * 3 - 15 && mouseX < border * 3 - 10 + gap2 && mouseY > border * 3 + gap2
+          && mouseY < border * 3 + 20 + gap2 + gap2 / 2) {
+
+                player_index -= 1;
+                if (player_index < 0) {
+                    player_index = players.length - 1;
+                }
+
+                if (player_index == 1)
+                {
+                    play_music();
+                }
+
+                if (player_index == 0)
+                {
+                    getAudioPlayer().close();
+                }
+
+               
+
+          }
         
         // User Presses Start
         if (mouseX < width/2 + gap2 +2.5f && mouseX > width/2 - gap2 -2.5f && mouseY < border * 5
@@ -141,7 +197,7 @@ public class Menu extends Visual {
         fill(255);
         textSize(30);
         text("Choose Song", middleW, border * 2);
-        text("Number of Players", middleW, border * 3);
+        text("Music", middleW, border * 3);
         fill(0);
         rectMode(CENTER);
         stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
@@ -154,7 +210,7 @@ public class Menu extends Visual {
         // display song name here
         text(display_names[song_index], middleW, border * 2 + gap);
         // display number of player here
-        text(players[0], middleW, border * 3 + gap);
+        text(players[player_index], middleW, border * 3 + gap);
 
     }
 
@@ -438,6 +494,7 @@ public class Menu extends Visual {
             }
             else
             {   
+                
             }
             
     }      

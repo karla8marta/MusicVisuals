@@ -12,8 +12,8 @@ public class Spiral {
     }
 
     public void draw_spirals() {
-        float r = 1f;
-        int numPoints = 10;
+        float r = 2f;
+        int numPoints = 30;
         float thetaInc = PApplet.TWO_PI + PApplet.PI / (float) numPoints;
         lerpedAverage = PApplet.lerp(lerpedAverage, menu.getAmplitude(), 0.1f);
         menu.strokeWeight(2);
@@ -25,6 +25,7 @@ public class Spiral {
             float x = menu.width + PApplet.sin(theta) * r;
             float y = 0 - PApplet.cos(theta) * r;
             r += 2.5f + lerpedAverage;
+            menu.line(X, Y, x, y);
             menu.line(X, Y, x, y);
             X = x;
             Y = y;
