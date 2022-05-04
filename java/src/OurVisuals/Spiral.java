@@ -4,29 +4,30 @@ import processing.core.PApplet;
 
 public class Spiral {
 
-    Menu menu;
-    float lerpedAverage = 0;
+    GameOfNode gon;
+    float lerpedAverage;
 
-    public Spiral(Menu menu) {
-        this.menu = menu;
+    public Spiral(GameOfNode gon) {
+        this.gon = gon;
+        this.lerpedAverage = 0;
     }
 
     public void draw_spirals() {
         float r = 2f;
         int numPoints = 30;
         float thetaInc = PApplet.TWO_PI + PApplet.PI / (float) numPoints;
-        lerpedAverage = PApplet.lerp(lerpedAverage, menu.getAmplitude(), 0.1f);
-        menu.strokeWeight(2);
-        float X = menu.border * 3, Y = 0;
+        lerpedAverage = PApplet.lerp(lerpedAverage, gon.getAmplitude(), 0.1f);
+        gon.strokeWeight(2);
+        float X = gon.height / 6.0f * 3, Y = 0;
         for (int i = 0; i < 125; i++) {
             float c = PApplet.map(i, 0, 125, 0, 255) % 255.0f;
-            menu.stroke(c, 255, 255, 100);
+            gon.stroke(c, 255, 255, 100);
             float theta = i * (thetaInc + lerpedAverage * 5);
-            float x = menu.width + PApplet.sin(theta) * r;
+            float x = gon.width + PApplet.sin(theta) * r;
             float y = 0 - PApplet.cos(theta) * r;
             r += 2.5f + lerpedAverage;
-            menu.line(X, Y, x, y);
-            menu.line(X, Y, x, y);
+            gon.line(X, Y, x, y);
+            gon.line(X, Y, x, y);
             X = x;
             Y = y;
         }
