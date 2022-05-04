@@ -2,7 +2,7 @@
 
 Name: Karla Marta Lozer, Kah Siong Chong, Joshua Al Rasbi
 
-Student Number: C20302353, D20123833, C20302353
+Student Number: C20302353, D20123833, C20356061
 
 
 # Description of the assignment
