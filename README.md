@@ -1,18 +1,8 @@
 # Music Visualiser Project
 
-Name: josh is dumb <3
+Name: Karla Marta Lozer, Kah Siong Chong, Joshua Al Rasbi
 
-Student Number: Do u want my phone number instead?
-Yes plz
-
-## Instructions
-Some top quality music
-
-https://www.youtube.com/watch?v=NVVNdEbdcFA
-
-https://www.youtube.com/watch?v=xdt1NDlLZw0&list=RDzIIlSYUvRnA&index=12
-
-https://www.youtube.com/watch?v=EPcLjgnGPDE&list=RDzIIlSYUvRnA&index=11
+Student Number: C20302353, D20123833, C20302353
 
 
 # Description of the assignment
