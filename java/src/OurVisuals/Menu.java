@@ -13,7 +13,7 @@ public class Menu extends Visual {
     // String[] songs = { "HomiesInParis2.mp3", "heroplanet.mp3", "Masquerade.mp3"
     // };
     // MAC
-    String[] songs = { "MusicVisuals/java/data/HomiesInParis2.mp3","MusicVisuals/java/data/heroplanet.mp3", "MusicVisuals/java/data/Masquerade.mp3"};
+    String[] songs = { "java/data/HomiesInParis2.mp3","java/data/heroplanet.mp3", "java/data/Masquerade.mp3"};
     // array to store number of playes
     String[] players = { "OFF", "ON" };
 
