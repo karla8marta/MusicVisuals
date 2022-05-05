@@ -23,11 +23,11 @@ Note : If program crashes, delete "java/data" from the following code :
 
 ```Java
 
-kick = new Drum(this, "kick", "MusicVisuals/java/data/drum_kick.wav");
-snare = new Drum(this, "snare", "MusicVisuals/java/data/drum_snare.wav");
-hat = new Drum(this, "hat", "MusicVisuals/java/data/drum_hat.wav");
+kick = new Drum(this, "kick", "java/data/drum_kick.wav");
+snare = new Drum(this, "snare", "java/data/drum_snare.wav");
+hat = new Drum(this, "hat", "java/data/drum_hat.wav");
 	
-String[] songsPath = {"MusicVisuals/java/data/HomiesInParis.mp3","MusicVisuals/java/data/heroplanet.mp3", "MusicVisuals/java/data/TequilaShots.mp3" ,"MusicVisuals/java/data/yunglean.mp3", "MusicVisuals/java/data/Masquerade.mp3"};
+String[] songsPath = {"java/data/HomiesInParis.mp3","java/data/heroplanet.mp3", "java/data/TequilaShots.mp3" ,"java/data/yunglean.mp3", "java/data/Masquerade.mp3"};
 ```
 
 # How it works
