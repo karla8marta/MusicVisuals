@@ -15,7 +15,7 @@ public class Menu extends Visual {
     // MAC
     String[] songs = { "java/data/HomiesInParis2.mp3","java/data/heroplanet.mp3", "java/data/Masquerade.mp3"};
     // array to store number of playes
-    String[] players = { "1 player", "2 players" };
+    String[] players = { "OFF", "ON" };
 
     Spiral spirals;
     AudioPlayer ap;
@@ -33,9 +33,11 @@ public class Menu extends Visual {
     float[] lerpedBuffer;
     // index of the song selected
     int song_index = 0;
+    int player_index = 1;
 
     //click
     boolean clicked = false;
+    boolean played = true;
 
     //timer variables
     int last = 0;
@@ -67,11 +69,14 @@ public class Menu extends Visual {
 
     public void play_music() {
 
-        getAudioPlayer().close();
-        loadAudio(songs[song_index]);
-        ap = getAudioPlayer();
-        ap.play();
-        ab = ap.mix;
+        if (played == true)
+        {
+            getAudioPlayer().close();
+            loadAudio(songs[song_index]);
+            ap = getAudioPlayer();
+            ap.play();
+            ab = ap.mix;
+        }
 
     }
 
@@ -102,9 +107,60 @@ public class Menu extends Visual {
                 song_index = 2;
             }
 
+            
             play_music();
 
         }
+
+     
+        // right
+        if (mouseX > middleW + border && mouseX < middleW + border + gap2 && mouseY > border * 3 + 35
+        && mouseY < border * 3 + 35 + gap2 / 2) {
+
+            player_index += 1;
+           
+
+            if (player_index > players.length - 1) {
+                player_index = 0;
+            }
+
+            if (player_index == 1)
+            {
+                played = true;
+                play_music();
+            }
+
+            if (player_index == 0)
+            {
+                played = false;
+                getAudioPlayer().close();
+            }
+
+        }
+
+        // left
+          // left arrow to change music
+          if (mouseX > border * 3 - 15 && mouseX < border * 3 - 10 + gap2 && mouseY > border * 3 + gap2
+          && mouseY < border * 3 + 20 + gap2 + gap2 / 2) {
+
+                player_index -= 1;
+                if (player_index < 0) {
+                    player_index = players.length - 1;
+                }
+
+                if (player_index == 1)
+                {
+                    play_music();
+                }
+
+                if (player_index == 0)
+                {
+                    getAudioPlayer().close();
+                }
+
+               
+
+          }
         
         // User Presses Start
         if (mouseX < width/2 + gap2 +2.5f && mouseX > width/2 - gap2 -2.5f && mouseY < border * 5
@@ -114,6 +170,15 @@ public class Menu extends Visual {
 
         }
         
+        if (mouseX < middleW/4f+((middleW/9)/2) && mouseX >middleW/4f-((middleW/9)/2) && mouseY < (middleW/2)*2.5+((middleW/10)/2)-10 && mouseY > (middleW/2)*2.5-((middleW/10))/2-10)
+        {
+            clicked = false;
+        }
+
+        if (mouseX < middleW/4f*7+((middleW/9)/2) && mouseX >middleW/4f*7-((middleW/9)/2) && mouseY < (middleW/2)*2.5+((middleW/10)/2)-10 && mouseY > (middleW/2)*2.5-((middleW/10))/2-10)
+        {
+            exit();
+        }
 
 
     }
@@ -141,7 +206,7 @@ public class Menu extends Visual {
         fill(255);
         textSize(30);
         text("Choose Song", middleW, border * 2);
-        text("Number of Players", middleW, border * 3);
+        text("Music", middleW, border * 3);
         fill(0);
         rectMode(CENTER);
         stroke(map(getSmoothedAmplitude(), 0, 1, 0, 255), 255, 255);
@@ -154,7 +219,7 @@ public class Menu extends Visual {
         // display song name here
         text(display_names[song_index], middleW, border * 2 + gap);
         // display number of player here
-        text(players[0], middleW, border * 3 + gap);
+        text(players[player_index], middleW, border * 3 + gap);
 
     }
 
@@ -218,16 +283,99 @@ public class Menu extends Visual {
         arc(cx/1.5f-((cx/7+cx/6)/2)+2,cx/2+28, cx/20, cx/20, PI, TWO_PI );
         arc(cx/1.5f+((cx/7+cx/6)/2)-2,cx/2-80, cx/20, cx/20, 0, PI ); 
 
-        /* Attempting to do timing for it to dance
+
+        //dancing
+        //robot_dance1
+        textMode(CENTER);
+
+        fill(255);
+        textSize(18);
+        textMode(CENTER);
+        text("MENU",(cx/4f), (cy/2)*2.5f+5);
+        noFill();
+        rect(cx/4f, (cy/2)*2.5f, cx/7, cx/8);
+        rect(cx/4f, (cy/2)*2.5f, cx/9, cx/10);
+        arc(cx/4f, (cy/2)*2.5f-32, cx/8, cx/6, PI, TWO_PI); 
+        arc(cx/4-15, (cy/2)*2.5f-50, cx/30, cx/30, 0, TWO_PI);
+        arc(cx/4f+15, (cy/2)*2.5f-50, cx/30, cx/30, 0, TWO_PI);
+        arc(cx/4f-15, (cy/2)*2.5f-50, cx/50, cx/50, 0, TWO_PI);
+        arc(cx/4f+15, (cy/2)*2.5f-50, cx/50, cx/50, 0, TWO_PI);
+        
+        //LEGS + SHOES  
+        line(cx/4f-20, (cy/2)*2.5f+32, cx/4f-20 , (cy/2)*2.5f+32+40 );
+        line(cx/4f-10, (cy/2)*2.5f+32, (cx/4f-10) , (cy/2)*2.5f+32+53 );
+        line(cx/4f+20, (cy/2)*2.5f+32, cx/4f+20 , (cy/2)*2.5f+32+40 );
+        line(cx/4f+10, (cy/2)*2.5f+32, cx/4f+10, (cy/2)*2.5f+32+53 ); 
+        arc(cx/4f-10, (cy/2)*2.5f+32+53 , cx/8, cx/20, PI, PI+HALF_PI); 
+        arc(cx/4f+10, (cy/2)*2.5f+32+53 , cx/8, cx/20, PI+HALF_PI, TWO_PI);   
+            
         //Arm
-        arc((cx/1.5f)-((cx/7)/2), cy/2+20-80 , cx/6, cx/6, HALF_PI, PI); 
-        arc((cx/1.5f)-((cx/7)/2), cy/2+20-80 , cx/7, cx/7, HALF_PI, PI); 
-        arc((cx/1.5f)+((cx/7)/2), cy/2+20 , cx/6, cx/6, PI+HALF_PI, TWO_PI);  
-        arc((cx/1.5f)+((cx/7)/2), cy/2+20 , cx/7, cx/7, PI+HALF_PI, TWO_PI); 
-        //Hands
-        arc((cx/1.5f)+((cx/7+cx/6)/2)-2,cx/2+28, cx/20, cx/20, PI, TWO_PI );
-        arc((cx/1.5f)-((cx/7+cx/6)/2)+2,cx/2-80, cx/20, cx/20, 0, PI );
-        */
+        if(getAmplitude() < 0.3f)
+        {
+            arc(cx/4f-((cx/7)/2), (cx/2)*2.5f+20 , cx/6, cx/6, PI, PI+HALF_PI); 
+            arc(cx/4f-((cx/7)/2), (cx/2)*2.5f+20 , cx/7, cx/7, PI, PI+HALF_PI); 
+            arc(cx/4f+((cx/7)/2), (cx/2)*2.5f-80 , cx/6, cx/6, 0, HALF_PI); 
+            arc(cx/4f+ ((cx/7)/2), (cx/2)*2.5f-80 , cx/7, cx/7, 0, HALF_PI ); 
+            //Hands
+            arc(cx/4f-((cx/7+cx/6)/2)+2,(cx/2)*2.5f+32, cx/20, cx/20, PI, TWO_PI );
+            arc(cx/4f+((cx/7+cx/6)/2)-2,(cx/2)*2.5f-92, cx/20, cx/20, 0, PI );
+        }
+        else
+        {
+            arc(cx/4f-((cx/7)/2), (cx/2)*2.5f-80 , cx/6, cx/6, HALF_PI, PI); 
+            arc(cx/4f-((cx/7)/2), (cx/2)*2.5f-80 , cx/7, cx/7, HALF_PI, PI); 
+            arc(cx/4f+((cx/7)/2), (cx/2)*2.5f+20 , cx/6, cx/6, PI+HALF_PI, TWO_PI);  
+            arc(cx/4f+((cx/7)/2), (cx/2)*2.5f+20 , cx/7, cx/7, PI+HALF_PI, TWO_PI); 
+            //Hands
+            arc(cx/4f+((cx/7+cx/6)/2)-2,(cx/2)*2.5f+32, cx/20, cx/20, PI, TWO_PI );
+            arc(cx/4f-((cx/7+cx/6)/2)+2,(cx/2)*2.5f-92, cx/20, cx/20, 0, PI );
+        }
+        
+        //robot_dance2
+        textSize(18);
+        textMode(CENTER);
+        text("QUIT",(cx/4f)*7, (cy/2)*2.5f+5);
+        textSize(25); 
+        fill(255);
+        text("NO",(cx/1.5f), cy/2+5);
+        noFill();
+        rect((cx/4f)*7, (cy/2)*2.5f, cx/7, cx/8);
+        rect((cx/4f)*7, (cy/2)*2.5f, cx/9, cx/10);
+        arc((cx/4f)*7, (cy/2)*2.5f-32, cx/8, cx/6, PI, TWO_PI); 
+        arc((cx/4f)*7-15, (cy/2)*2.5f-50, cx/30, cx/30, 0, TWO_PI);
+        arc((cx/4f)*7+15, (cy/2)*2.5f-50, cx/30, cx/30, 0, TWO_PI);
+        arc((cx/4f)*7-15, (cy/2)*2.5f-50, cx/50, cx/50, 0, TWO_PI);
+        arc((cx/4f)*7+15, (cy/2)*2.5f-50, cx/50, cx/50, 0, TWO_PI);
+        
+        //LEGS + SHOES  
+        line((cx/4f)*7-20, (cy/2)*2.5f+32, (cx/4f)*7-20 , (cy/2)*2.5f+32+40 );
+        line((cx/4f)*7-10, (cy/2)*2.5f+32, ((cx/4f)*7-10) , (cy/2)*2.5f+32+53 );
+        line((cx/4f)*7+20, (cy/2)*2.5f+32, (cx/4f)*7+20 , (cy/2)*2.5f+32+40 );
+        line((cx/4f)*7+10, (cy/2)*2.5f+32, (cx/4f)*7+10, (cy/2)*2.5f+32+53 ); 
+        arc((cx/4f)*7-10, (cy/2)*2.5f+32+53 , cx/8, cx/20, PI, PI+HALF_PI); 
+        arc((cx/4f)*7+10, (cy/2)*2.5f+32+53 , cx/8, cx/20, PI+HALF_PI, TWO_PI);   
+            
+        //Arm
+        if(getAmplitude() < 0.3f)
+        {
+            arc((cx/4f)*7-((cx/7)/2), (cx/2)*2.5f-80 , cx/6, cx/6, HALF_PI, PI); 
+            arc((cx/4f)*7-((cx/7)/2), (cx/2)*2.5f-80 , cx/7, cx/7, HALF_PI, PI); 
+            arc((cx/4f)*7+((cx/7)/2), (cx/2)*2.5f+20 , cx/6, cx/6, PI+HALF_PI, TWO_PI);  
+            arc((cx/4f)*7+((cx/7)/2), (cx/2)*2.5f+20 , cx/7, cx/7, PI+HALF_PI, TWO_PI); 
+            //Hands
+            arc((cx/4f)*7+((cx/7+cx/6)/2)-2,(cx/2)*2.5f+32, cx/20, cx/20, PI, TWO_PI );
+            arc((cx/4f)*7-((cx/7+cx/6)/2)+2,(cx/2)*2.5f-92, cx/20, cx/20, 0, PI );
+        }
+        else
+        {
+            arc((cx/4f)*7-((cx/7)/2), (cx/2)*2.5f+20 , cx/6, cx/6, PI, PI+HALF_PI); 
+            arc((cx/4f)*7-((cx/7)/2), (cx/2)*2.5f+20 , cx/7, cx/7, PI, PI+HALF_PI); 
+            arc((cx/4f)*7+((cx/7)/2), (cx/2)*2.5f-80 , cx/6, cx/6, 0, HALF_PI); 
+            arc((cx/4f)*7+ ((cx/7)/2), (cx/2)*2.5f-80 , cx/7, cx/7, 0, HALF_PI ); 
+            //Hands
+            arc((cx/4f)*7-((cx/7+cx/6)/2)+2,(cx/2)*2.5f+32, cx/20, cx/20, PI, TWO_PI );
+            arc((cx/4f)*7+((cx/7+cx/6)/2)-2,(cx/2)*2.5f-92, cx/20, cx/20, 0, PI );
+        }
         
 
         //robot 2
@@ -296,7 +444,8 @@ public class Menu extends Visual {
         
         
         textSize(20);
-        text(mouseY, cx,cy+100);
+        text(getAmplitude(), cx,cy+100);
+        text(cx/4f , cx,cy+200);
         //speakers
         //speaker left
         rectMode(CORNER);
@@ -407,9 +556,9 @@ public class Menu extends Visual {
                 stroke(c, 255, 255);
                 float f = lerpedBuffer[i] * halfH/3.0f;
                 line(i, halfH-100 + f, i, halfH-100 - f);
-                      
+                    
             }
-         
+        
         }
 
 
@@ -425,7 +574,8 @@ public class Menu extends Visual {
 
         //scanning eye
         //timer every 10 second interval
-        if(millis() > last+20400){
+        if(millis() > last+20400)
+        {
             last = millis();
         }
             if(m < 10200)
@@ -440,8 +590,9 @@ public class Menu extends Visual {
             {   
             }
             
+            
     }      
-
+    
     public void draw() {
 
         background(0);
