@@ -19,9 +19,20 @@ The assignment is a visual representation of sound, consisting of shapes such as
 
 - Check control section from this description to find out more about controls
 
+Note : If program crashes, delete "java/data" from the following code :
+
+```Java
+
+kick = new Drum(this, "kick", "MusicVisuals/java/data/drum_kick.wav");
+snare = new Drum(this, "snare", "MusicVisuals/java/data/drum_snare.wav");
+hat = new Drum(this, "hat", "MusicVisuals/java/data/drum_hat.wav");
+	
+String[] songsPath = {"MusicVisuals/java/data/HomiesInParis.mp3","MusicVisuals/java/data/heroplanet.mp3", "MusicVisuals/java/data/TequilaShots.mp3" ,"MusicVisuals/java/data/yunglean.mp3", "MusicVisuals/java/data/Masquerade.mp3"};
+```
+
 # How it works
 
-When the program is run menu will be displayed. There is a choice of 5 songs: "Homies In Paris", "Hero Planet", "Tequila Shots", "All the Things", "Masquerade" displayed on the menu. Users can navigate through them by pressing the right arrow on their keyboard to go to the next song, or by pressing the left arrow to go to the previous song. When the user is happy with their choice there is a start button which has to be pressed for the game to start. The stage will be displayed with drums. Those drums will generate sound depending on the button pressed. Press "a" to generate sound for the first drum (hat), "s" for the second one (kick) and "d" for (snare). Users can then press Menu to go back to the menu or Quit to exit the program. 
+When the program is run menu will be displayed. There is a choice of 5 songs: "Homies In Paris", "Hero Planet", "Tequila Shots", "All the Things", "Masquerade" displayed on the menu. Users can navigate through them by pressing the right arrow on their keyboard to go to the next song, or by pressing the left arrow to go to the previous song. When the user is happy with their choice there is a start button which has to be clicked or enter pressed for the game to start. The stage will be displayed with drums. Those drums will generate sound depending on the button pressed. Press "a" to generate sound for the first drum (hat), "s" for the second one (kick) and "d" for (snare). Users can then press Menu to go back to the menu or Quit to exit the program. 
 
 Sounds mainly react to the Amplitude which is then mapped depending on the shape we want to create. Music and sound effects are stored in two different arrays and then changed depending on users' choices and buttons pressed. This is all stored in GameOfNode class. Inheritance is used to call functions like startMinim() and other functions from the Visual class. We also used a lerped buffer to get the spectrum to change according to the amplitudes of the song.
 
@@ -30,7 +41,7 @@ Sounds mainly react to the Amplitude which is then mapped depending on the shape
 
 Scanning Laser Eye
 
-This laser scans the stage for intervals of 10 seconds, stops for 5 and then starts again. This is the formula for laserTimer = millis() / 1000.0f % 15. For the laser to work we used two for loops. One for checking if the timer is less or equal to 10 and greater or equal to 0. Another for loop is used to draw the lines ( laser effect ) by mapping i from it's current range of 0 to buffer size to our new rage which is from 0 to the width of our screen. 
+This laser scans the stage for intervals of 10 seconds, stops for 5 and then starts again. This is the formula for laserTimer = millis() / 1000.0f % 15. For the laser to work we used one loop and an if statement. If statement for checking if the timer is less or equal to 10 and greater or equal to 0. For loop is used to draw the lines ( laser effect ) by mapping i from it's current range of 0 to buffer size to our new rage which is from 0 to the width of our screen. Laser is moved from to top of the screen to the bottom in those 10 seconds.
 
 ```Java
  laserTimer = gon.millis() / 1000.0f % 15;
@@ -54,7 +65,7 @@ This laser scans the stage for intervals of 10 seconds, stops for 5 and then sta
 
 Drums Which Make Sound
 
-When one of our 3 drums is pressed by pressing either "a", "s" or "d" it will make a sound. This sound is wav file which is read from the data folder. Depending on the button press different wave file will be loaded and therefore make different sounds. If "a" is pressed hitEffect will be set to ( boolean to check) if the button is pressed and drumHit() function from the Drum class will be called. This is where our sound will be played which is stored in a file.
+When one of our 3 drums is pressed by pressing either "a", "s" or "d" it will make a sound. This sound is wav file which is read from the data folder. Depending on the button press different wave file will be loaded and therefore make different sounds. If "a" is pressed hitEffect will be set to ( boolean to check) if the button is pressed and drumHit() function from the Drum class will be called. This is where our sound will be played which is stored in a file. 
 
 ```Java
  public void drumHit() {
@@ -71,7 +82,7 @@ When one of our 3 drums is pressed by pressing either "a", "s" or "d" it will ma
 ```
 ![image_50359041](https://user-images.githubusercontent.com/95685389/167012833-b4db23ec-bc82-4bbe-baf2-fead94caa969.JPG)
 
-Because hitEffect is set to true other functions will be called to draw stars, lines and make echo effect.
+Because hitEffect is set to true other functions will be called to draw stars, lines and make echo effect. We are proud of this as it was hard to synchronise everything and get it to work all together.
 
 Other Things We Are Proud Of :
 - better understanding of sound and differences between things such as frequence, amplitude, FFT, frequence bands
@@ -81,6 +92,10 @@ Other Things We Are Proud Of :
 - using sin(), cos() to get the right angle
 
 - use of render methods 
+
+- use of inheritance, classes, organised and structured code
+
+- clean and neat code, reasonable methods in classes
 
 
 
@@ -92,7 +107,7 @@ Left Arrow - go to the previous song
 
 Right Arrow - go to the next song
 
-Press Start - start the game
+Click Start or press Enter - start the game
 
 <img width="1112" alt="Screenshot 2022-05-05 at 22 05 42" src="https://user-images.githubusercontent.com/95685389/167026041-566f4ff5-79e7-4927-8f5b-74d9ad8a8286.png">
 
