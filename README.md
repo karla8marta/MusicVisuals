@@ -157,7 +157,7 @@ Press Menu - go back to the menu
 ```
 # Link To Our Youtube Video
 
-https://github.com/DrBanksy/MusicVisuals
+https://youtu.be/amXjiczxq-s
 
 # Reference
 
