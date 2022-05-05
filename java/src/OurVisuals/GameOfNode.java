@@ -13,8 +13,8 @@ public class GameOfNode extends Visual{
     Stage stage;
     Drum kick, snare, hat;
 
-    String[] songsName = {"Homies In Paris", "Hero Planet", "Tequila Shots", "Masquerade"};
-    String[] songsPath = {"java/data/HomiesInParis.mp3","java/data/heroplanet.mp3", "java/data/TequilaShots.mp3" , "java/data/Masquerade.mp3"};
+    String[] songsName = {"Homies In Paris", "Hero Planet", "Tequila Shots", "All the Things", "Masquerade"};
+    String[] songsPath = {"java/data/HomiesInParis.mp3","java/data/heroplanet.mp3", "java/data/TequilaShots.mp3" ,"java/data/yunglean.mp3", "java/data/Masquerade.mp3"};
 
     int currSong = 0;
     boolean displayMenu = true;
