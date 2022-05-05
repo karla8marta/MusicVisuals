@@ -26,7 +26,7 @@ When the program is run menu will be displayed. There is a choice of 5 songs: "H
 Sounds mainly react to the Amplitude which is then mapped depending on the shape we want to create. Music and sound effects are stored in two different arrays and then changed depending on users' choices and buttons pressed. This is all stored in GameOfNode class. Inheritance is used to call functions like startMinim() and other functions from the Visual class. We also used a lerped buffer to get the spectrum to change according to the amplitudes of the song.
 
 
-# What I am most proud of in the assignment
+# What We are most proud of in the assignment
 
 Scanning Laser Eye
 
