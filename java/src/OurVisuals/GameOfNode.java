@@ -16,7 +16,7 @@ public class GameOfNode extends Visual{
     String[] songsPath = {"java/data/HomiesInParis2.mp3","java/data/heroplanet.mp3", "java/data/Masquerade.mp3"};
 
     int currSong = 0;
-    boolean displayMenu = true;
+    boolean displayMenu = false;
 
     public void settings()
     {
@@ -31,6 +31,7 @@ public class GameOfNode extends Visual{
         changeMusic();
 
         menu = new Menu(this);
+        stage = new Stage(this);
     }
 
     public void keyPressed()
@@ -100,6 +101,10 @@ public class GameOfNode extends Visual{
         if (displayMenu)
         {
             menu.drawMenu(songsName[currSong]);
+        }
+        else
+        {
+            stage.drawStage();
         }
     }
 }
