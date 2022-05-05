@@ -17,7 +17,7 @@ public class GameOfNode extends Visual{
     String[] songsPath = {"java/data/HomiesInParis2.mp3","java/data/heroplanet.mp3", "java/data/Masquerade.mp3"};
 
     int currSong = 0;
-    boolean displayMenu = false;
+    boolean displayMenu = true;
     float[] lerpedBuffer;
 
     public void settings()
